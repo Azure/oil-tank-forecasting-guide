@@ -1,0 +1,5 @@
+{
+  "DefaultEndpointsProtocol" : "https",
+  "AccountName": "tanklevelstorage",
+  "AccountKey": "<accountKey>"
+}

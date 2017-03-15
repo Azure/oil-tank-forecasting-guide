@@ -1,0 +1,5 @@
+{
+  "Api Key": "<ApiKey>",
+  "Url": "https://management.azureml.net/workspaces/<workspaceId>/webservices/<serviceId>/endpoints/tanklevelforecasting",
+  "Name": "Tank Level Forecasting Solution How-To Step 2 of 2 [trained model]"
+}

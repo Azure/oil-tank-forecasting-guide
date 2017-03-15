@@ -1,0 +1,4 @@
+{
+  "Api Key": "<ApiKey>",
+  "Url": "https://ussouthcentral.services.azureml.net/workspaces/<workspaceId>/services/<serviceId>"
+}

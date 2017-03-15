@@ -1,0 +1,7 @@
+{
+    "Driver" : "SQL Server",
+    "Server" : "tanklevelserver.database.windows.net",
+    "Database" : "tankleveldatabase",
+    "Login" : "tanklevel",
+    "Password" : "<Your password>"
+}

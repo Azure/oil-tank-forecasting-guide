@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQL Server", "SQL Server\SQL Server.sqlproj", "{28E18464-6428-4A7D-9F0D-18F56CFD947A}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "R", "R\R.rxproj", "{0A9410D7-114D-448A-B50F-E9B1E17A983E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Technical Deployment Guide", "Technical Deployment Guide", "{26A5B950-8F4D-4B4B-B024-BCE4CDA128F6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Overview for Business Audiences", "Solution Overview for Business Audiences", "{584C9C59-3403-4999-871A-BCD9FD6995C4}"
+	ProjectSection(SolutionItems) = preProject
+		..\Solution Overview for Business Audiences\Infographic.pdf = ..\Solution Overview for Business Audiences\Infographic.pdf
+		..\README.md = ..\README.md
+		..\Solution Overview for Business Audiences\Solution At-A-Glance.pdf = ..\Solution Overview for Business Audiences\Solution At-A-Glance.pdf
+		..\Solution Overview for Business Audiences\Walking Deck.pptx = ..\Solution Overview for Business Audiences\Walking Deck.pptx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{3A46B1F7-9D37-450D-94F1-39B3A177CF54}"
+	ProjectSection(SolutionItems) = preProject
+		images\architecture.png = images\architecture.png
+		images\TLF1of2Methods.png = images\TLF1of2Methods.png
+		images\TLF1of2Performance.png = images\TLF1of2Performance.png
+		images\TLF1of2Small.png = images\TLF1of2Small.png
+		images\TLF2of2PredictiveConfiguredSmall.png = images\TLF2of2PredictiveConfiguredSmall.png
+		images\TLF2of2PredictiveSmall.png = images\TLF2of2PredictiveSmall.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E18464-6428-4A7D-9F0D-18F56CFD947A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0A9410D7-114D-448A-B50F-E9B1E17A983E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9410D7-114D-448A-B50F-E9B1E17A983E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9410D7-114D-448A-B50F-E9B1E17A983E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9410D7-114D-448A-B50F-E9B1E17A983E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A46B1F7-9D37-450D-94F1-39B3A177CF54} = {26A5B950-8F4D-4B4B-B024-BCE4CDA128F6}
+	EndGlobalSection
+EndGlobal
