@@ -200,7 +200,7 @@ Publish the database project to the database:
 
 - In VS15, open ***View > Solution Explorer***.
 - Right-click *SQL Server*, and select ***Build***.
-- Right-click *SQL Server*, and select ***Publish...***.
+- Right-click *SQL Server*, and select ***Publish***.
 - In ***Target database settings***, next to ***Target database connection***, click ***Edit***.
 - In the ***History*** tab, select the *tankleveldatabase* of *tanklevelserver12345* and click ***Test Connection***.
   - If the result is a success, click ***OK***.
