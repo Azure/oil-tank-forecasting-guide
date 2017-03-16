@@ -24,7 +24,6 @@ The snapshot below shows an example PowerBI dashboard that gives insights into t
 The diagram below shows the solution architecture, which is described in more detail in the [Technical Deployment Guide](Technical%20Deployment%20Guide/) folder.
 ![Solution Architecture](Technical%20Deployment%20Guide/images/TLFArchitecture.PNG)
 
-
 # Getting Started #
 
 This solution package contains materials to help both technical and business audiences understand our tank level forecasting solution for the oil and gas industry built on the [Cortana Intelligence Suite](https://www.microsoft.com/en-us/server-cloud/cortana-intelligence-suite/Overview.aspx).

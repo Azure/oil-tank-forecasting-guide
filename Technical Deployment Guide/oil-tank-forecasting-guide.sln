@@ -22,12 +22,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Overview for Busin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{3A46B1F7-9D37-450D-94F1-39B3A177CF54}"
 	ProjectSection(SolutionItems) = preProject
-		images\architecture.png = images\architecture.png
+		images\PBI-dashboard.PNG = images\PBI-dashboard.PNG
+		images\PBI-streaming.PNG = images\PBI-streaming.PNG
+		images\PBI-tanklevelforecast.PNG = images\PBI-tanklevelforecast.PNG
 		images\TLF1of2Methods.png = images\TLF1of2Methods.png
 		images\TLF1of2Performance.png = images\TLF1of2Performance.png
 		images\TLF1of2Small.png = images\TLF1of2Small.png
 		images\TLF2of2PredictiveConfiguredSmall.png = images\TLF2of2PredictiveConfiguredSmall.png
 		images\TLF2of2PredictiveSmall.png = images\TLF2of2PredictiveSmall.png
+		images\TLFArchitecture.PNG = images\TLFArchitecture.PNG
 	EndProjectSection
 EndProject
 Global
