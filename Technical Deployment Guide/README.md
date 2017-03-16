@@ -25,7 +25,7 @@ Forecasting the amount of a substance that will be in a container some time from
 
 [Figure 1](#Figure1) shows the overall architecture of the Tank Level Forecasting Solution How-To.
 
-![Figure 1](images/architecture.png)<br/>
+![Figure 1](images/TLFArchitecture.png)<br/>
 <a name="Figure1">*Figure 1 Tank Level Forecasting Solution Architecture*</a>
 
 # Requirements<a name="requirements"></a> #
