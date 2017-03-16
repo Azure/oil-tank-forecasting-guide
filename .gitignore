@@ -221,4 +221,7 @@ file[0-9a-f]*.xdf
 
 # Web Essentials Settings
 WebEssentials2015-Settings.json
+
+# Repository-specific
 /Technical Deployment Guide/SqlQuery_1.sql
+/Technical Deployment Guide/R/Data/
