@@ -23,7 +23,7 @@ The snapshot below shows an example PowerBI dashboard that gives insights into t
 ## Solution Architecture
 The diagram below shows the solution architecture, which is described in more detail in the [Technical Deployment Guide](Technical%20Deployment%20Guide/) folder.
 
-![Architecture](Technical%20Deployment%20Guide/images/TLFArchitecture.PNG)
+![Architecture](Technical%20Deployment%20Guide/images/PBI-dashboard.PNG)
 
 # Getting Started #
 
