@@ -25,11 +25,11 @@ suppressPackageStartupMessages(library("rjson", quietly = TRUE,
 suppressWarnings(source("CallService.R"))
 
 # Call the Tank Level model retraining service.
-RetrainModel <- function(ws, query, iLearner, performance, ...) {
+RetrainModel <- function(ws, query, expression, iLearner, performance, ...) {
     # Create the Outputs structure.
     Outputs <- list("output1" = iLearner, "output2" = performance)
     # Create the GlobalParameters structure.
-    GlobalParameters <- list("Database query" = query)
+    GlobalParameters <- list("Database query" = query, "Relational expression" = expression)
     # Obtain the outputs results.
     Batch(ws, Outputs = Outputs, GlobalParameters = GlobalParameters, ...)
 }
@@ -67,6 +67,12 @@ dataQueryFormat <-
 fromDate <- "1970/1/8"
 toDate <- "1970/1/15"
 
+# The relational expression for splitting the data.
+relationalExpressionFormat <- "\\\"Time\" < %s"
+
+# The date for splitting the data.class
+splitDate <- "1970/1/15"
+
 # The storage account connection string.
 connectionString <-
     paste(names(wsStorage), unlist(wsStorage), sep = "=",
@@ -89,10 +95,13 @@ performance <-
 # Create the data query.
 dataQuery <- sprintf(dataQueryFormat, fromDate, toDate)
 
+# Create the relational expression.
+relationalExpression <- sprintf(relationalExpressionFormat, fromDate, toDate)
+
 # Retrain the model.
 retrainedModel <-
-    RetrainModel(exRetraining, dataQuery, iLearner, performance,
-                 verbose = TRUE)
+    RetrainModel(exRetraining, dataQuery, relationalExpression,
+                 iLearner, performance, verbose = TRUE)
 
 #-----------------------------------------------------------------------
 # 4. Update the forecasting endpoint with the retrained model.
