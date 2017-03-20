@@ -127,7 +127,7 @@ Finally, install [Power BI Desktop](https://powerbi.microsoft.com/desktop).
 
 The repository contains data, R code, and documentation for the solution.
 
-- Go to the [Tank Level Forecasting](https://github.com/azure/cortana-intelligence-tank-level-forecasting-solution) repository.
+- Go to the [Tank Level Forecasting](https://github.com/azure/oil-tank-forecasting-guide) repository.
 - In the ***Code*** tab, click ***Clone or download***.
 - Click ***Open in Visual Studio***.
 - Once VS15 is open and shows the repository cloning dialog, click ***Clone***.
@@ -166,7 +166,7 @@ Configure the server's firewall for access from your computer:
 Copy the server's login information to the *TankLevelDatabase.json* file for access from R:
 
 - In VS15, open ***View > Team Explorer***.
-- Under ***Local Git Repositories***, open *cortana-intelligence-tank-level-forecasting-solution*.
+- Under ***Local Git Repositories***, open *oil-tank-forecasting-guide*.
 - Under ***Solutions***, open *Tank Level Forecasting*.
 - Open ***View > Solution Explorer***.
 - Navigate to *R > Data*.
