@@ -147,9 +147,8 @@ You will create and configure the Azure SQL Database to contain the inputs to an
     - ***Server name*** to *tanklevelserver12345*,
     - ***Server admin login*** to *tanklevel*,
     - ***Password*** to something you will remember,
-    - ***Confirm Password*** to the password you selected,
-    - ***Location*** to ***South Central US***, and
-    - ***Create V12 server*** is set to ***Yes***.
+    - ***Confirm Password*** to the password you selected, and
+    - ***Location*** to ***South Central US***.
   - Click ***Select***.
 - Once returned to the ***SQL Database*** tab, click ***Create***.
 - Wait for the database and server to be created (about 2 minutes).
@@ -167,7 +166,7 @@ Copy the server's login information to the *TankLevelDatabase.json* file for acc
 
 - In VS15, open ***View > Team Explorer***.
 - Under ***Local Git Repositories***, open *oil-tank-forecasting-guide*.
-- Under ***Solutions***, open *Tank Level Forecasting*.
+- Under ***Solutions***, open *oil-tank-forecasting-guide*.
 - Open ***View > Solution Explorer***.
 - Navigate to *R > Data*.
 - Open *TankLevelDatabase.json*.
@@ -215,18 +214,18 @@ Verify that the needed tables exist:
 - Navigate to *tanklevelserver12345 > **Databases** > tankleveldatabase > **Tables***, and wait for the list to refresh.
 - In addition to other items, you should see the tables *dbo.TankLevelForecast* and *dbo.TankLevelSensor*.
 
-In *Tank Level Forecasting > R*, source the file *TankLevelSensor.R* to generate and load the sensor data:
+In *oil-tank-forecasting-guide > R*, source the file *TankLevelSensor.R* to generate and load the sensor data:
 
 - In VS15 ***Solution Explorer***, navigate to *R > TankLevelSensor.R*.
 - Right-click *TankLevelSensor.R*, and select ***Source Selected File(s) with Echo***.
-- Wait until the loading is complete (about 4 minutes).
+- Wait until the loading is complete (about 8 minutes).
 
 After the loading is complete, you can view the data in the table.
 
 - In VS15 ***SQL Server Object Explorer***, navigate to *tanklevelserver12345 > **Databases** > tankleveldatabase > **Tables***.
 - Right-click *dbo.TankLevelSensor*, and select ***View Data***.
 
-While the loading completes, you may proceed, but do not start the [Run the Tank Level Forecasting experiments](#run-the-experiments) step.
+While the loading completes, you may proceed, but do not start the [Run the oil-tank-forecasting-guide experiments](#run-the-experiments) step.
 
 ## Create an Azure Machine Learning workspace<a name="create-an-aml-workspace"></a> ##
 
@@ -235,6 +234,11 @@ You will create the Azure Machine Learning (AML) workspace to contain the experi
 First, create an AML workspace:
 
 - In [Azure Portal](https://portal.azure.com), click ***New > Intelligence + Analytics > Machine Learning Workspace***.
+  - If ***Machine Learning Workspace*** is not visible,
+    - click ***See all***,
+    - type *Machine Learning Workspace* in the search box, and press the *Enter* key,
+    - click ***Machine Learning Workspace***, and
+    - click ***Create***.
 - In the blade that opens, set
   - ***Workspace name*** to *tanklevelworkspace*,
   - ***Resource group*** to ***Use existing***, and select *tanklevelresources12345*,
@@ -279,11 +283,15 @@ Add to the workspace the Tank Level Forecasting experiments from the Gallery:
 - Click the check mark button.
 - Wait for the experiment to open in the requested workspace (about 1 minute).
 
-Repeat the above steps to add the [Tank Level Forecasting Solution How-To: Step 2 of 2](http://gallery.cortanaintelligence.com/Experiment/Tank-Level-Forecasting-Solution-How-To-Step-2-of-2-1) experiment.
+You may see the message that the experiment is being updated after it has been copied.
+
+Repeat the above steps to add the [Tank Level Forecasting Solution How-To: Step 2 of 2](http://gallery.cortanaintelligence.com/Experiment/Tank-Level-Forecasting-Solution-How-To-Step-2-of-2-2) experiment.
 
 ## Run the Tank Level Forecasting experiments<a name="run-the-experiments"></a> ##
 
 **NOTE:** Wait until the sensor table data is completely loaded before starting this step.
+
+### Find the best learner module ###
 
 The *Tank Level Forecasting Solution How-To: Step 1 of 2* is used to find which learner provides the best results when forecasting the tank level time series. You will navigate to the experiment, configure it, and run it:
 
@@ -314,6 +322,8 @@ The image should be similar to that shown in [Figure 3](#Figure3). In the figure
 ![Figure 3](images/TLF1of2Methods.png)<br/>
 <a name="Figure3">*Figure 3 Tank Level Forecasting Performance Values*</a>
 
+### Create the forecasting web service ###
+
 - Go back to the experiment.
 - Right-click the module corresponding to the best algorithm, and select ***Copy***.
 
@@ -335,7 +345,7 @@ The *Tank Level Forecasting Solution How-To: Step 2 of 2* is used to create a mo
 
 You will use the experiment to create a predictive experiment, configure it, and run it:
 
-- Click ***SET UP WEB SERVICE*** at the bottom of the page, and choose ***Predictive Web Service [Recommended]***.
+- Click ***SET UP WEB SERVICE*** at the bottom of the page, and choose ***Predictive Web Service***.
 - You should get a predictive experiment similar to the one in [Figure 4](#Figure4).
 
 ![Figure 4](images/TLF2of2PredictiveSmall.png)<br/>
@@ -352,7 +362,7 @@ Find the name of the column that has the forecast, and use it to export the data
 
 - Right-click on the ***Score Model*** module, and select ***Scored Dataset > Visualize***.
 - Scroll the window horizontally until you are at the last column of the data.
-- Note the name of the column immediately to the right of the *TankLevelLag180* column; it should be something like ***Scored Label***.
+- Note the name of the column immediately to the right of the *TankLevelLag180* column; it should be something like ***Scored Label*** or  ***Scored Label Mean***.
 - Return to the experiment.
 - Add an ***Export Data*** module to the experiment.
 - Wire it to the ***Score Model*** module.
@@ -364,9 +374,8 @@ Find the name of the column that has the forecast, and use it to export the data
   - ***User name*** to *tanklevel*,
   - ***Server user account password*** to the password you selected,
   - ***Comma separated list of columns to be saved*** to *FacilityId,Time,TankLevel,Scored Label*, where you replace the name *Scored Label* with the name of the forecast column you just found,
-  - ***Data table name*** to *tanklevelforecast*,
-  - ***Comma separated list of datatable columns*** to *FacilityId,Time,TankLevel,TankLevelForecast*, and
-  - ***Use cached results*** to <u>*NOT*</u> checked.
+  - ***Data table name*** to *tanklevelforecast*, and
+  - ***Comma separated list of datatable columns*** to *FacilityId,Time,TankLevel,TankLevelForecast*.
 
 Your predictive experiment should now look like to the one in [Figure 5](#Figure5).
 
@@ -397,17 +406,29 @@ Copy the endpoint's forecasting authorization information to the *TankLevelForec
   - ***Batch Requests*** to *Url*.
 - Delete from the end of the uri the string ***/jobs?api-version=2.0***.
 - Save the file.
+- 
+### Create the retraining web service ###
 
-Copy the endpoint's update authorization information to the *TankLevelUpdating.json* file for access from R:
+*Important Note:* While the previous predictive web service was deployed from a predictive experiment, the retraining web service is deployed from a training experiment. You will still need information from the predictive web service in order to update it using the retrained model.
 
+Copy the tanklevelforecasting endpoint's update authorization information to the *TankLevelUpdating.json* file for access from R:
+
+- Click *tanklevelforecasting* in the list of endpoints.
+- From the menu bar, click ***Consume***.
 - Copy
   - ***Primary Key*** to *Api Key*.
   - ***Patch*** to *Url*.
 - Save the file.
  
-You will create the retraining web service from the retraining experiment.
+Create the retraining web service from the training experiment.
 
 - Navigate to your *Tank Level Forecasting Solution How-To: Step 2 of 2*.
+- Add an ***Web Service Output*** module to the experiment.
+- Wire it to the output of the ***Train Model*** module.
+- Add another ***Web Service Output*** module to the experiment.
+- Wire it to the left output of the ***Execute R Script*** module with the words *Compute performance metrics*.
+- Click ***RUN*** at the bottom of the page.
+- Wait for the experiment to finish running (about 4 minutes).
 - Click ***SET UP WEB SERVICE*** at the bottom of the page, and choose ***Deploy Web Service [Classic]***.
 - If you are warned that the web services does not have web inputs or outputs, click ***Yes***.
 
@@ -446,8 +467,8 @@ The browser will redirect to the web service home page. Copy the web service's a
   - ***Username*** to *tanklevel*, and
   - ***Password*** to the password you selected.
 - Click ***Connect***.
-- In the ***Navigator*** dialog, check the box next to *TankLevelForecast*.
-- Once the *TankLevelForecast* data shows up in the item pane, click ***Load***.
+- In the ***Navigator*** dialog, check the box next to *TankLevelForecastPbi*.
+- Once the *TankLevelForecastPbi* data shows up in the item pane, click ***Load***.
 - In the ***Visualizations*** column, click the line chart icon.
 - From the ***Fields*** column, drag
   - *Time* to the ***Axis*** data field,
@@ -458,11 +479,11 @@ The browser will redirect to the web service home page. Copy the web service's a
 - Open the *Time* filter.
 - Under ***Filter Type***, choose ***Advanced filtering***.
 - Under ***Show items when the value*, select ***is after***.
-- In the calendar dialog, set the date to *1970/1/22*.
+- In the calendar dialog, set the date to *1970/1/8*.
 - Click ***Apply filter***.
 - Size the line chart window as you see fit.
 
-The line chart shows the current tank level and the tank level forecast for that time. The forecast was set in modeling for a time that is 4 hours ahead of the current time, so the tank level forecast line should lead the tank level line by four hours.
+The line chart shows the current tank level and the tank level forecast for that time. The forecast was set in modeling for a time that is 1 hour ahead of the current time. The *TankLevelForecastPbi* is a view of the *TankLevelForecast* table that should align the forecast with the actual data from the time that is forecasted.
 
 Publish the report to Power BI.
 
@@ -489,15 +510,15 @@ Once publication is complete, you should see a window announcing the success of 
 
 You will call the retraining web service with new data to fit a new model, update the forecasting endpoint with the new model, forecast unseen data using that model, and update the Power BI report to display the new forecast.
 
-In *Tank Level Forecasting > R*, source the file *TankLevelRetrain.R* to retrain the model and update the endpoint.
+In *Tank Level Forecasting > R*, source the file *TankLevelRetrain.R* to retrain the model and update the endpoint. This step is set to retrain the model using data from *1970/1/8* through *1970/1/14*.
 
 - In VS15 ***Solution Explorer***, navigate to *R > TankLevelRetrain.R*.
 - Right-click *TankLevelRetrain.R*, and select ***Source Selected File(s) with Echo***.
 - Wait until the retraining is complete.
 
-Similarly, source the file *TankLevelForecast.R* to forecast unseen data using the new model.
+Similarly, source the file *TankLevelForecast.R* to forecast unseen data using the new model. The data forecast are from *1970/1/15* through *1970/1/21*.
 
-Finally, update the published Power BI report to display the new forecast by updating its filter to select data from *1970/2/5* to *1970/2/9*.
+Finally, update the published Power BI report to display the new forecast by updating its filter to select data from *1970/1/15* through *1970/1/21*.
 
 - Go to the [Power BI](https://powerbi.microsoft.com) site, and sign in.
 - Open the navigation pane on the left.
@@ -506,8 +527,8 @@ Finally, update the published Power BI report to display the new forecast by upd
 - Open the ***Filter*** blade on the right.
   - You may have to click in the chart before the filters are shown.
 - Expand the *Time* filter* by clicking it.
-- In the calendar dialog, set the date to *1970/2/5*.
+- In the calendar dialog, set the date to *1970/1/15*.
 - Below the setting, click the ***And*** radio button.
 - From the drop-down box below the buttons, select ***Is on or before***.
-- In the calendar dialog, set the date to *1970/2/9*.
+- In the calendar dialog, set the date to *1970/1/21*.
 - Click ***Apply filter***.

@@ -34,7 +34,7 @@ dataset <- read.csv(file.path(dataDir, "TankLevelGenerator.csv"),
                     colClasses = c(Time = "POSIXct"))
 
 # Define data generation parameters.
-dataset2 <- data.frame(Facilities = 50, NoiseFactor = 200)
+dataset2 <- data.frame(Facilities = 3, NoiseFactor = 200)
 
 #-----------------------------------------------------------------------
 # 3. Generate the data.

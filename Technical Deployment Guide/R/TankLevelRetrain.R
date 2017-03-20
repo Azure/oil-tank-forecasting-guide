@@ -65,7 +65,7 @@ dataQueryFormat <-
 
 # The dates for the data.
 fromDate <- "1970/1/8"
-toDate <- "1970/2/5"
+toDate <- "1970/1/15"
 
 # The storage account connection string.
 connectionString <-
