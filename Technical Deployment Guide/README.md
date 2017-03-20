@@ -418,6 +418,8 @@ Copy the tanklevelforecasting endpoint's update authorization information to the
 - Copy
   - ***Primary Key*** to *Api Key*.
   - ***Patch*** to *Url*.
+- Under the ***Patch*** Url, click ***API HELP***.
+- Under ***Updatable Resources***, copy the ***Resource Name*** to *Name*.
 - Save the file.
  
 Create the retraining web service from the training experiment.
