@@ -467,8 +467,8 @@ The browser will redirect to the web service home page. Copy the web service's a
   - ***Username*** to *tanklevel*, and
   - ***Password*** to the password you selected.
 - Click ***Connect***.
-- In the ***Navigator*** dialog, check the box next to *TankLevelForecastPbi*.
-- Once the *TankLevelForecastPbi* data shows up in the item pane, click ***Load***.
+- In the ***Navigator*** dialog, check the box next to *TankLevelForecast*.
+- Once the *TankLevelForecast* data shows up in the item pane, click ***Load***.
 - In the ***Visualizations*** column, click the line chart icon.
 - From the ***Fields*** column, drag
   - *Time* to the ***Axis*** data field,
@@ -483,7 +483,7 @@ The browser will redirect to the web service home page. Copy the web service's a
 - Click ***Apply filter***.
 - Size the line chart window as you see fit.
 
-The line chart shows the current tank level and the tank level forecast for that time. The forecast was set in modeling for a time that is 1 hour ahead of the current time. The *TankLevelForecastPbi* is a view of the *TankLevelForecast* table that should align the forecast with the actual data from the time that is forecasted.
+The line chart shows the current tank level and the tank level forecast for that time. The forecast is set during model creation for a time that is 1 hour ahead of the current time. So the tank level forecast line should lead the tank level line by an hour.
 
 Publish the report to Power BI.
 
