@@ -96,7 +96,7 @@ performance <-
 dataQuery <- sprintf(dataQueryFormat, fromDate, toDate)
 
 # Create the relational expression.
-relationalExpression <- sprintf(relationalExpressionFormat, fromDate, toDate)
+relationalExpression <- sprintf(relationalExpressionFormat, splitDate)
 
 # Retrain the model.
 retrainedModel <-
