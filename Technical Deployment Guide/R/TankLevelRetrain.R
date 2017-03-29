@@ -65,7 +65,7 @@ dataQueryFormat <-
 
 # The dates for the data.
 fromDate <- "1970/1/8"
-toDate <- "1970/1/15"
+toDate <- "1970/1/22"
 
 # The relational expression for splitting the data.
 relationalExpressionFormat <- "\\\"Time\" < %s"

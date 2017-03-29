@@ -25,7 +25,7 @@ dataset <- read.csv(file.path(dataDir, "TankLevelFeatures.csv"),
                     colClasses = c(Time = "POSIXct"))
 
 # Define label creation parameters.
-dataset2 <- data.frame(Lead = 24)
+dataset2 <- data.frame(Lead = 60)
 
 #-----------------------------------------------------------------------
 # 2. Create the label.

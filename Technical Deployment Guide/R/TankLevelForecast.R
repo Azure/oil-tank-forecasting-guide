@@ -50,8 +50,8 @@ dataQueryFormat <-
      WHERE [Time] >= '%s' AND [Time] < '%s';"
 
 # The dates for the data.
-fromDate <- "1970/1/15"
-toDate <- "1970/1/22"
+fromDate <- "1970/1/8"
+toDate <- "1970/1/15"
 
 #-----------------------------------------------------------------------
 # 3. Forecast the tank level.

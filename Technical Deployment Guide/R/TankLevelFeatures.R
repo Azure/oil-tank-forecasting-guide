@@ -24,10 +24,10 @@ invisible(NULL)
 dataDir <- "Data"
 dataset <- read.csv(file.path(dataDir, "TankLevelData.csv"),
                     colClasses = c(Time = "POSIXct"))
-dataset <- subset(dataset, Time < "1970/1/29")
+dataset <- subset(dataset, Time < "1970/1/15")
 
 # Define feature creation parameters.
-dataset2 <- data.frame(Lag = 18, Resolution = 10)
+dataset2 <- data.frame(Resolution = 1, Lag = 60)
 
 #-----------------------------------------------------------------------
 # 2. Create the features.
