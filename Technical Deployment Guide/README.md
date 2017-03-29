@@ -36,8 +36,8 @@ You will need the following to create this solution:
 - The following software:
   - [Microsoft ODBC Driver 11 for SQL Server - Windows](https://www.microsoft.com/en-us/download/details.aspx?id=36434).
   - [Microsoft Command Line Utilities 11 for SQL Server](https://www.microsoft.com/en-us/download/details.aspx?id=36433).
-  - [Microsoft Visual Studio 2015](https://msdn.microsoft.com/library/dd831853.aspx).
-  - [R Tools for Visual Studio](https://mran.microsoft.com/open).
+  - [Microsoft Visual Studio 2015 Update 3](https://msdn.microsoft.com/en-us/library/e2h7fzkw.aspx).
+  - [R Tools for Visual Studio](https://www.visualstudio.com/vs/rtvs).
   - [Microsoft R Open](https://mran.microsoft.com/open).
   - [Power BI Desktop](https://powerbi.microsoft.com/desktop).
 - An [Azure Resource Group](https://azure.microsoft.com/documentation/articles/resource-group-overview).
@@ -74,11 +74,11 @@ First, install Microsoft ODBC Driver 11 for SQL Server - Windows:
 - When your download is complete, run the installer.
 - Follow the instructions until the setup is complete.
 
-Similarly, install [Microsoft Command Line Utilities 11 for SQL Server](https://www.microsoft.com/en-us/download/details.aspx?id=36433),
+Similarly, install [Microsoft Command Line Utilities 11 for SQL Server](https://www.microsoft.com/en-us/download/details.aspx?id=36433).
 
-Install Microsoft Visual Studio 2015 (VS15):
+Install Microsoft Visual Studio 2015 pdate 3 (VS15):
 
-- Go to the [VS15](https://www.visualstudio.com) site.
+- Go to the [VS15](https://msdn.microsoft.com/en-us/library/e2h7fzkw.aspx) site.
 - Download a version of VS15, such as the free Community 2015 edition.
 - When your download is complete, run the installer.
 - Follow the instructions until the setup is complete. During the setup, make sure the following features are selected:
@@ -100,22 +100,25 @@ Install Microsoft Visual Studio 2015 (VS15):
   - ***Common Tools > Visual Studio Extensibility Tools Update 3***.
 - Click ***OK***.
 
-Install [R Tools for Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) (RTVS).
+Install [R Tools for Visual Studio](https://www.visualstudio.com/vs/rtvs) (RTVS).
 
-Install [Microsoft R Open](https://mran.microsoft.com) (MRO).
+Install [Microsoft R Open](https://mran.microsoft.com/open) (MRO) (if you did not install it during RTVS setup.)
 
 Verify that VS15 is configured to use MRO, and install the required MRO packages:
 
 - In VS15, open ***R Tools > Windows > R Interactive***.
 - Verify that the startup text mentions MRO. If not:
-  - Go to ***R Tools > Options...***.
-  - At the entry for ***R Engine (64-bit)***, click on the value, and then on the ellipsis ***...***.
-  - Navigate to the directory where MRO was installed, such as:<br/>
-    ```dosbatch
-    \Program Files\Microsoft\MRO-3.3.1
-    ```
-  - Click ***Select Folder***.
-  - Restart VS15 when prompted.
+  - Go to ***R Tools > Windows > Workspaces***.
+  - If the MRO you installed is not listed as a local engine:
+    - Click ***Add***.
+    - Under *Entry Name*, type a unique name for this MRO.
+    - Next to *Host URL or path to R installation*, type the path to the directory where MRO was installed, such as:<br/>
+      ```dosbatch
+      C:\Program Files\Microsoft\R Open\R_SERVER
+      ```
+    - Click ***Save***.
+  - If the MRO you installed is not the connected version of R (i.e. **bold**), connect to it by clicking the arrow icon.
+    - If you are asked whether you are sure you want to change connections, click ***Yes***.
 - To install the required packages, run the command:<br/>
   ```R
   install.packages(c('RCurl', 'rjson', 'zoo', 'RODBC'))
@@ -181,19 +184,23 @@ Copy the server's login information to the *TankLevelDatabase.json* file for acc
 
 This creates the database tables needed to store the Internet of Things sensor data, and the machine learning forecasts. Then, it generates simulated sensor data from a number of facilities, and loads it into the database table *TankLevelSensor*.
 
+### Publish the database ###
+
 Connect to the Azure SQL database:
 
-- In VS15, open ***View > Server Explorer*** (*not* Cloud Explorer).
-- Navigate to ***Azure > SQL Databases***, and find *tankleveldatabase* in the list.
-- Right-click *tankleveldatabase*, and select ***Open in SQL Server Object Explorer***.
-- In the ***Connect*** dialog, set
+- In VS15, open ***View > SQL Server Object Explorer***.
+- Click on the *Add SQL Server* icon.
+- In the ***Connect*** dialog that comes up, open the list of Azure servers.
+- In the dialog's search box, type *tankleveldtabase*.
+- Click on the *tankleveldatabase* that goes with *tanklevelserver12345*.
+- In the bottom panel, set
   - ***Server Name*** to *tanklevelserver124345.database,windows.net*,
   - ***Authentication*** to ***SQL Server Authentication***,
   - ***User Name*** to *tanklevel*,
   - ***Password*** to the password you selected, and
   - ***Remember Password*** to check mark for convenience.
 - Click ***Connect***.
-- Wait for the ***SQL Server Object Explorer*** window to open.
+- Wait for the ***SQL Server Object Explorer*** window to show *tanklevelserver12345*.
 
 Publish the database project to the database:
 
@@ -214,18 +221,24 @@ Verify that the needed tables exist:
 - Navigate to *tanklevelserver12345 > **Databases** > tankleveldatabase > **Tables***, and wait for the list to refresh.
 - In addition to other items, you should see the tables *dbo.TankLevelForecast* and *dbo.TankLevelSensor*.
 
+### Load the data ###
+
 In *oil-tank-forecasting-guide > R*, source the file *TankLevelSensor.R* to generate and load the sensor data:
 
 - In VS15 ***Solution Explorer***, navigate to *R > TankLevelSensor.R*.
 - Right-click *TankLevelSensor.R*, and select ***Source Selected File(s) with Echo***.
 - Wait until the loading is complete (about 8 minutes).
+  - The loading app should print a running update of the number of records loaded so far.
+  - At times, loading will pause for as much as 5 minutes before proceeding again.
 
 After the loading is complete, you can view the data in the table.
 
 - In VS15 ***SQL Server Object Explorer***, navigate to *tanklevelserver12345 > **Databases** > tankleveldatabase > **Tables***.
 - Right-click *dbo.TankLevelSensor*, and select ***View Data***.
 
-While the loading completes, you may proceed, but do not start the [Run the oil-tank-forecasting-guide experiments](#run-the-experiments) step.
+If loading does not complete successfully, you may need to reload the data. In that case, you should first delete the contents of the *dbo.TankLevelSensor* doing the reload.
+
+While the loading is happening, you may proceed, but do not start the [Run the oil-tank-forecasting-guide experiments](#run-the-experiments) step.
 
 ## Create an Azure Machine Learning workspace<a name="create-an-aml-workspace"></a> ##
 
