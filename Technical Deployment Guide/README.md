@@ -18,7 +18,7 @@ Forecasting the amount of a substance that will be in a container some time from
 	- [Create an Azure Machine Learning workspace](#create-an-aml-workspace)
 	- [Add the Tank Level Forecasting experiments](#add-the-experiments)
 	- [Run the Tank Level Forecasting experiments](#run-the-experiments)
-	- [Create a Power BI subscription](#create-a-power-bi-subscription)
+	- [Create a Power BI dashboard](#create-a-power-bi-dashboard)
 	- [Retrain the Tank Level Forecasting model](#retrain-the-model)
 
 # Architecture<a name="architecture"></a> #
@@ -345,6 +345,7 @@ The *Tank Level Forecasting Solution How-To: Step 2 of 2* is used to create a mo
 - In [AML Studio](https://studio.azureml.net), navigate to your copy of *Tank Level Forecasting Solution How-To: Step 2 of 2*.
 - Paste into the experiment the module you had copied.
 - Wire up the copied module to the ***Train Model*** module's ***Untrained model*** input.
+  - You may then delete the previous learner module.
 - Click on the ***Import Data*** module.
 - Set
   - ***Data source*** to ***Azure SQL Database***,
@@ -364,9 +365,10 @@ You will use the experiment to create a predictive experiment, configure it, and
 ![Figure 4](images/TLF2of2PredictiveSmall.png)<br/>
 <a name="Figure4">*Figure 4 Tank Level Forecasting Predictive Experiment*</a>
 
+- In the ***Properties*** panel to the right of the experiment, in the ***Web Service Parameters*** section, delete the *Relational expression* web service parameter.
 - Delete the ***Web service input*** and ***Web service output*** modules.
 - Delete the ***Execute R Script*** module with the words *Compute the label*.
-- Wire the ***Execute R Script*** module with the words *Compute the features* to the right-most input of the ***Apply Transformation*** module.
+- Wire the ***Execute R Script*** module with the words *Compute the features* to the right-most input of the ***Score Model*** module.
 - Select the ***Score Model*** module, and select the ***Append score columns to output*** option.
 - Click ***RUN*** at the bottom of the page.
 - Wait for the experiment to finish running (about 1 minute).
@@ -386,7 +388,7 @@ Find the name of the column that has the forecast, and use it to export the data
   - ***Database name*** to *tankleveldatabase*,
   - ***User name*** to *tanklevel*,
   - ***Server user account password*** to the password you selected,
-  - ***Comma separated list of columns to be saved*** to *FacilityId,Time,TankLevel,Scored Label*, where you replace the name *Scored Label* with the name of the forecast column you just found,
+  - ***Comma separated list of columns to be saved*** to *FacilityId,Time,TankLevel,Scored Labels*, where you replace the name *Scored Labels* with the name of the forecast column you just found,
   - ***Data table name*** to *tanklevelforecast*, and
   - ***Comma separated list of datatable columns*** to *FacilityId,Time,TankLevel,TankLevelForecast*.
 
@@ -438,12 +440,6 @@ Copy the tanklevelforecasting endpoint's update authorization information to the
 Create the retraining web service from the training experiment.
 
 - Navigate to your *Tank Level Forecasting Solution How-To: Step 2 of 2*.
-- Add an ***Web Service Output*** module to the experiment.
-- Wire it to the output of the ***Train Model*** module.
-- Add another ***Web Service Output*** module to the experiment.
-- Wire it to the left output of the ***Execute R Script*** module with the words *Compute performance metrics*.
-- Click ***RUN*** at the bottom of the page.
-- Wait for the experiment to finish running (about 4 minutes).
 - Click ***SET UP WEB SERVICE*** at the bottom of the page, and choose ***Deploy Web Service [Classic]***.
 - If you are warned that the web services does not have web inputs or outputs, click ***Yes***.
 
@@ -458,7 +454,9 @@ The browser will redirect to the web service home page. Copy the web service's a
 - Delete from the end of the uri the string ***/jobs?api-version=2.0***.
 - Save the file.
 
-## Create a Power BI subscription<a name="create-a-power-bi-subscription"></a> ##
+## Create a Power BI dashboard<a name="create-a-power-bi-dashboard"></a> ##
+
+First, create a Power BI subscription.
 
 - Go to the [Power BI](https://powerbi.microsoft.com) site.
 - Click ***Get started for free***.
@@ -466,6 +464,8 @@ The browser will redirect to the web service home page. Copy the web service's a
 - Follow the instructions.
 
 **NOTE:** Wait until experiment *Tank Level Forecasting Solution How-To: Step 2 of 2 [Predictive exp.]* is finished before continuing in this section.
+
+Then, connect to your Azure SQL Server Database from Power BI.
 
 - Start ***Power BI Desktop***.
 - Sign in to ***Power BI***.
@@ -477,11 +477,14 @@ The browser will redirect to the web service home page. Copy the web service's a
   - ***Database*** to *tankleveldatabase*, and
   - enable ***DirectQuery***.
 - Click ***OK***.
-- In the ***Access a SQL Server Database*** dialog, choose the ***Database*** tab.
+- In the ***SQL Server Database*** dialog, choose the ***Database*** tab.
 - Set
   - ***Username*** to *tanklevel*, and
   - ***Password*** to the password you selected.
 - Click ***Connect***.
+
+Display the forecast tank levels in a line chart.
+
 - In the ***Navigator*** dialog, check the box next to *TankLevelForecast*.
 - Once the *TankLevelForecast* data shows up in the item pane, click ***Load***.
 - In the ***Visualizations*** column, click the line chart icon.
@@ -498,7 +501,7 @@ The browser will redirect to the web service home page. Copy the web service's a
 - Click ***Apply filter***.
 - Size the line chart window as you see fit.
 
-The line chart shows the current tank level and the tank level forecast for that time. The forecast is set during model creation for a time that is 1 hour ahead of the current time. So the tank level forecast line should lead the tank level line by an hour.
+The line chart shows the current tank level and the tank level forecast for that time. There will likely be many differences between the two lines. One difference comes from the forecast having been set during model creation for a time that is 1 hour ahead of the current time. So the tank level forecast line should lead the tank level line by an hour.
 
 Publish the report to Power BI.
 
