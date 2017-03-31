@@ -440,6 +440,11 @@ Copy the tanklevelforecasting endpoint's update authorization information to the
 Create the retraining web service from the training experiment.
 
 - Navigate to your *Tank Level Forecasting Solution How-To: Step 2 of 2*.
+- Set the ***Web service output*** modules to the following names:
+  - Click on the ***Web service output*** module attached to the ***Train Model*** module.
+  - Set ***Name*** to *output1*.
+  - Click on the ***Web service output*** module attached to the ***Execute R Script*** *Compute performance* module.
+  - Set ***Name*** to *output2*.
 - Click ***SET UP WEB SERVICE*** at the bottom of the page, and choose ***Deploy Web Service [Classic]***.
 - If you are warned that the web services does not have web inputs or outputs, click ***Yes***.
 
