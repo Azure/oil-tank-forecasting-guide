@@ -1,4 +1,4 @@
-# Tank Level Forecasting Solution - A Cortana Intelligence Solution How-to Guide
+# Tank Level Forecasting - Data Science Guide
 
 Today, most facilities operate reactively to problems in tank levels. This often leads to spills, emergency shutdowns, expensive remediation costs, regulatory issues, costly repairs and fines. Tank level forecasting allows facilities to manage and abate these and other problems.
 
@@ -15,30 +15,17 @@ The tank level forecasting process starts at the well input. Oil is measured as 
 
 The Cortana Intelligence Suite is adaptable and can be customized to meet different requirements that facilities and corporations have.
 
-## Solution Dashboard
+## Dashboard
 The snapshot below shows an example PowerBI dashboard that gives insights into the tank levels and solution.
 
 ![Dashboard](Technical%20Deployment%20Guide/images/PBI-dashboard.PNG)
 
-## Solution Architecture
+## Architecture
 The diagram below shows the solution architecture, which is described in more detail in the [Technical Deployment Guide](Technical%20Deployment%20Guide/) folder.
 
 ![Architecture](Technical%20Deployment%20Guide/images/TLFArchitecture.png)
 
 # Getting Started #
-
-This solution package contains materials to help both technical and business audiences understand our tank level forecasting solution for the oil and gas industry built on the [Cortana Intelligence Suite](https://www.microsoft.com/en-us/server-cloud/cortana-intelligence-suite/Overview.aspx).
-
-# Business Audiences
-
-In this repository you will find a folder labeled [Solution Overview for Business Audiences](Solution%20Overview%20for%20Business%20Audiences). This folder contains:
-- Infographic: covers the benefits of using advanced analytics for tank level forecasting in the oil and gas industry
-- Solution At-A-Glance: an introduction to a Cortana Intelligence Suite solution for tank level forecasting
-- Walking Deck
-
-For more information on how to tailor Cortana Intelligence to your needs [connect with one of our partners](http://aka.ms/CISFindPartner).
-
-# Technical Audiences
 
 See the [Technical Deployment Guide](Technical%20Deployment%20Guide) folder for a full set of instructions on how to put together and deploy a tank level forecasting solution using the Cortana Intelligence Suite. <!--The **Developer Journey Map** included there walks through the different components created as part of the end-to-end solution.-->
 
